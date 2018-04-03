@@ -141,7 +141,7 @@ export default class Topbar extends React.Component {
         <div className="wrapper">
           <div className="topbar-wrapper">
             <Link href="#">
-              <img height="17" src={ Logo } alt="RightScale Swagger UI"/>
+              <img src={ Logo } alt="RightScale"/>
               <span>API Docs</span>
             </Link>
             <form className="download-url-wrapper" onSubmit={formOnSubmit}>
