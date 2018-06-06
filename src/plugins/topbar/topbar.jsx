@@ -144,9 +144,9 @@ export default class Topbar extends React.Component {
               <img src={ Logo } alt="RightScale"/>
               <span>API Docs</span>
             </Link>
-            <form className="download-url-wrapper" onSubmit={formOnSubmit}>
+            {/* <form className="download-url-wrapper" onSubmit={formOnSubmit}>
               {control.map((el, i) => cloneElement(el, { key: i }))}
-            </form>
+            </form> */}
           </div>
         </div>
       </div>
