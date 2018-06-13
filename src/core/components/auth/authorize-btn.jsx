@@ -21,7 +21,7 @@ export default class AuthorizeBtn extends React.Component {
     let isAuthorized = !!authSelectors.authorized().size
 
     return (
-      <div className="auth-wrapper">
+      <div className="auth-wrapper" style={{ display: 'none' }}>
         <button className={isAuthorized ? "btn authorize locked" : "btn authorize unlocked"} onClick={ this.onClick }>
           <span>Authorize</span>
           <svg width="20" height="20">
