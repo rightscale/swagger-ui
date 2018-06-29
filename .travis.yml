@@ -19,8 +19,8 @@ deploy:
     local_dir: $TRAVIS_BUILD_DIR/$WORK_DIR/dist
     upload_dir: /
     acl: public_read
-    access_key_id: "$S3_KEY_ID_RS_DOCS_TOOLS"
-    secret_access_key: "$S3_KEY_SECRET_RS_DOCS_TOOLS"
+    access_key_id: "$gov_api_docs_access_key"
+    secret_access_key: "$gov_api_docs_secret_key"
     on:
       branches:
         only:
