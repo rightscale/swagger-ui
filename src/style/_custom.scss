@@ -1,3 +1,4 @@
+// Custom topbar
 .topbar {
   display: flex;
   height: 48px;
@@ -7,8 +8,30 @@
     font-size: 16px;
     font-weight: 300;
   }
+  .wrapper {
+    width: 100%;
+    max-width: 980px;
+  }
 }
 
+// Removed base-url
+.info {
+  .main {
+   .base-url {
+     display: none;
+   }
+  }
+}
+
+// Custom wrapper
+.swagger-ui {
+  .wrapper {
+    width: 100%;
+    max-width: 980px;
+  }
+}
+
+// Variable overrides
 $topbar-background-color: #0069CC;
 $topbar-download-url-wrapper-element-border-color: #F7A626;
 $topbar-download-url-button-background-color: #F7A626;
