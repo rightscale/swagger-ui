@@ -23,6 +23,13 @@
   }
 }
 
+// Hide main URL
+.info {
+  hgroup.main a {
+    display: none;
+  }
+}
+
 // Custom wrapper
 .swagger-ui {
   .wrapper {
