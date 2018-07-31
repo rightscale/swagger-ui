@@ -15,7 +15,7 @@ deploy:
   - provider: s3
     bucket: rs-api-docs
     upload_dir: governance-policies
-    region: us-east-1
+    region: us-west-1
     skip_cleanup: true
     local_dir: $TRAVIS_BUILD_DIR/$WORK_DIR/dist
     acl: public_read
