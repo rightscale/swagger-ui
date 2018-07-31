@@ -13,7 +13,7 @@ before_deploy:
 script: echo "skipping npm test for RS build"
 deploy:
   - provider: s3
-    bucket: "rs-api-docs"
+    bucket: rs-api-docs
     upload-dir: governance-policies
     region: us-east-1
     skip_cleanup: true
