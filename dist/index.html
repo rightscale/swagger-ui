@@ -3,11 +3,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>RightScale Policy API</title>
+  <!--
+    ============================================================================================
+    NOTE:
+    This index.html from https://github.com/rightscale/swagger-ui/blob/rs_master/dist/index.html
+    is now intended to be used by multiple apps, so do not make it specific to your app,
+    but please keep it as generic as possible.
+
+    It assumes assets live in parallel S3 bucket folders. For example, for Tools
+    account rs-api-docs S3 bucket:
+
+    /rs-api-docs/swagger-ui
+                 ^^^ folder contains shared swagger-ui styling
+
+    /rs-api-docs/cost_management
+                 ^^^ folder contains this index.html and app specific swagger.json/.yaml.
+                     Makes relative references to "../swagger-ui/xxx" for shared files.
+    ============================================================================================
+  -->
+  <title>RightScale API Docs</title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:300,600|Titillium+Web:400,600,700" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="./swagger-ui.css" >
-  <link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32" />
-  <link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16" />
+  <!-- Assumes swagger assets, referenced below, live in a parallel S3 folder -->
+  <link rel="stylesheet" type="text/css" href="../swagger-ui/swagger-ui.css" >
+  <link rel="icon" type="image/png" href="../swagger-ui/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="../swagger-ui/favicon-16x16.png" sizes="16x16" />
   <style>
     html
     {
@@ -67,14 +86,63 @@
 
 <div id="swagger-ui"></div>
 
-<script src="./swagger-ui-bundle.js"> </script>
-<script src="./swagger-ui-standalone-preset.js"> </script>
+<!-- Assumes swagger assets, referenced below, live in a parallel S3 folder -->
+<script src="../swagger-ui/swagger-ui-bundle.js"> </script>
+<script src="../swagger-ui/swagger-ui-standalone-preset.js"> </script>
 <script>
 window.onload = function() {
+  var pathArray = window.location.pathname.split("/").filter(x => x);
+  var newPathName = "";
+  var endingElement = pathArray.length;
+
+  // =========================================================================
+  // This implementation requires the use of the /#/ operator in the pathname
+  // for its url, when not viewing from the S3 browser URLs. For example:
+  //
+  // "url":"https://reference.rightscale.com/cost_management/#/index.html"
+  //
+  // For the URL above, when using /#/, window.location.pathname will return:
+  //   "/cost_management"
+  // as opposed to when not using /#/:
+  //   "/cost_management/index.html"
+  //
+  // This allows us to parse the app name from the url, to dynamically find
+  // the app specific swagger.json/.yaml within an s3 bucket/folder structure,
+  // and make assumptions about relative pathnames.
+  //
+  // To reiterate from the NOTE: at the top of this file, this assumes that
+  // shared swagger-ui styling assets live in a folder parallel to the app's
+  // folder containing the index.html/ and swagger.json/.yaml files.
+  //
+  // e.g.
+  //  /rs-api-docs/swagger-ui
+  //  /rs-api-docs/cost_management
+  //  /rs-api-docs/governance-policies
+  // =========================================================================
+
+  // if /#/ not in URL, then strip off last element, which should be the
+  // filename (e.g. index.html).
+  //
+  // "url":"https://reference.rightscale.com/cost_management/index.html"
+  //
+  // For the URL above, window.location.pathname will return:
+  //   "/cost_management/index.html"
+  //
+  // Therefore, ignore the last element of the pathArray.
+  if (window.location.href.lastIndexOf("/#/") < 0) {
+    // ignore ending filename in pathname (e.g. index.html)
+    endingElement -= 1;
+  }
+
+  // rework relative pathname based on above criteria
+  for(i = 0; i < endingElement; i++) {
+    newPathName += "/";
+    newPathName += pathArray[i];
+  }
 
   // Build a system
   const ui = SwaggerUIBundle({
-    url: "/governance-policies/swagger.json",
+    url: newPathName + "/swagger.json",
     dom_id: '#swagger-ui',
     deepLinking: true,
     presets: [
