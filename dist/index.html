@@ -123,12 +123,13 @@ window.onload = function() {
   // if /#/ not in URL, then strip off last element, which should be the
   // filename (e.g. index.html).
   //
-  // "url":"https://reference.rightscale.com/cost_management/index.html"
+  // "https://s3-us-west-1.amazonaws.com/rs-api-docs/cost_management/index.html"
   //
   // For the URL above, window.location.pathname will return:
-  //   "/cost_management/index.html"
+  //   "/rs-api-docs/cost_management/index.html"
   //
-  // Therefore, ignore the last element of the pathArray.
+  // Therefore, we want to ignore the last element of the pathArray, but keep
+  // the rest of the path for finding the swagger.json/.yaml.
   if (window.location.href.lastIndexOf("/#/") < 0) {
     // ignore ending filename in pathname (e.g. index.html)
     endingElement -= 1;
