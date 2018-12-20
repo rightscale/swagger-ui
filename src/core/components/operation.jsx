@@ -142,7 +142,7 @@ export default class Operation extends PureComponent {
 
             { displayOperationId && operationId ? <span className="opblock-summary-operation-id">{operationId}</span> : null }
 
-            {
+            {/* {
               (!security || !security.count()) ? null :
                 <AuthorizeOperationBtn
                   isAuthorized={ isAuthorized }
@@ -151,7 +151,7 @@ export default class Operation extends PureComponent {
                     authActions.showDefinitions(applicableDefinitions)
                   }}
                 />
-            }
+            } */}
           </div>
 
           <Collapse isOpened={isShown}>
