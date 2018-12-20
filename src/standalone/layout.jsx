@@ -61,7 +61,7 @@ export default class StandaloneLayout extends React.Component {
         { !loadingStatus || loadingStatus === "success" && <BaseLayout /> }
         <Row>
           <Col>
-            <OnlineValidatorBadge />
+            {/* <OnlineValidatorBadge /> */}
           </Col>
         </Row>
       </Container>
