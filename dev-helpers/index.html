@@ -75,7 +75,8 @@
     window["SwaggerUIStandalonePreset"] = window["swagger-ui-standalone-preset"]
     // Build a system
     const ui = SwaggerUIBundle({
-      url: "https://s3.amazonaws.com/governance-policies-docs/governance/front_service/master/swagger.json",
+      // url: "https://s3.amazonaws.com/governance-policies-docs/governance/front_service/master/swagger.json",
+      url: "/samples/optima_front.json",
       dom_id: '#swagger-ui',
       presets: [
         SwaggerUIBundle.presets.apis,

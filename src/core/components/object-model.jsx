@@ -35,7 +35,8 @@ export default class ObjectModel extends Component {
     let description = schema.get("description")
     let properties = schema.get("properties")
     let additionalProperties = schema.get("additionalProperties")
-    let title = schema.get("title") || name
+    // let title = schema.get("title") || name
+    let title = name
     let requiredProperties = schema.get("required")
 
     const JumpToPath = getComponent("JumpToPath", true)
